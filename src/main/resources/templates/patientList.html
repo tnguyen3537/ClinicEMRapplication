@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <h1>Result</h1>
+    <div th:if="${age} >= 18">
+        <p th:text="'Patient is ' + ${name} + ' and is an adult' " />
+    </div>
+    <div th:if="${age} < 18">
+        <p th:text="'Patient is ' + ${name} + ' and is a pediatric patient' " />
+    </div>
+</body>
+
+</html>
