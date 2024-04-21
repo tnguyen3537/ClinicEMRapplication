@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<title>Book Store</title>
+	<title>Patient List</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 </head>
@@ -10,7 +10,7 @@
 <body>
 	<div class="container">
 		<div class="col-md-4">
-			<h1>Welcome</h1>
+			<h1>Vitals Clinic </h1>
 		</div>
 
 		<div class="col-md-4">
@@ -28,12 +28,10 @@
 					<th> </th>
 				</tr>
 				<tr th:each="patient : ${patients}">
+					<td>
+						<a th:href="@{/encounter/{id}(id=${patient.id})}" th:text="${patient.mrn}"> </a>
 
-					<!-- <td th:text="${patient.mrn}"> -->
-						<td>
-						<a th:href="@{/delete/{id}(id=${patient.id})}" th:text="${patient.mrn}"> </a>
-
-						</td>
+					</td>
 					<td th:text="${patient.fName}"></td>
 					<td th:text="${patient.lName}"></td>
 					<td th:text="${patient.dateofBirth}"></td>

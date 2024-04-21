@@ -1,11 +1,15 @@
 package clinic.emr.clinicemr.domain;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Patient {
@@ -15,8 +19,12 @@ public class Patient {
     private int mrn;
     private String fName, lName, dateofBirth;
 
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
+    private List<Encounter> encounters;
+
     public Patient() {
-	}
+    }
 
     public Patient(int mrn, String fName, String lName, String dateofBirth) {
         this.mrn = mrn;
@@ -63,6 +71,14 @@ public class Patient {
 
     public void setDateofBirth(String dateofBirth) {
         this.dateofBirth = dateofBirth;
+    }
+
+    public List<Encounter> getEncounter() {
+        return encounters;
+    }
+
+    public void setEncounter(List<Encounter> encounters) {
+        this.encounters = encounters;
     }
 
     @Override

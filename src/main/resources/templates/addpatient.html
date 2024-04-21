@@ -7,15 +7,16 @@
 	th:href="@{css/bootstrap.min.css}" />
 </head>
 
-<body>
+<body class="center">
 	<h1>Add Patient</h1>
 	<div>
 		<form th:object="${patient}" th:action="@{save}" action="#" method="post">
+			<input type="hidden" id="id" th:field="*{id}" />
 
 		  	<label for="mrn">MRN</label>
 			<input type="number" id="mrn" th:field="*{mrn}" required/><div style="clear: both; display: block; height: 10px;"></div>
 
-		  	<label for="fName">Firt Name</label>
+		  	<label for="fName">First Name</label>
 			<input type="text" id="fName" th:field="*{fName}" required/>
 			<div style="clear: both; display: block; height: 10px;"></div>
 

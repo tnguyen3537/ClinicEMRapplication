@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Edit Book</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{../css/bootstrap.min.css}" />
+</head>
+
+<body class="center">
+    <h1>Add Encounter</h1>
+    <div>
+        <form th:object="${encounter}" th:action="@{../saveEncounter/{id}(id=${encounter.getPatient().getId()})}" action="#" method="post">
+
+            <input type="hidden" id="patient" th:field="*{patient}" />
+
+            <label for="MRN">Patient MRN: </label>
+            <a th:text="${encounter.getPatient().getMrn()}"> </a>
+            <div style="clear: both; display: block; height: 10px;"></div>
+
+            <label for="contactDate">Date</label>
+            <input type="text" id="contactDate" th:field="*{contactDate}" required />
+            <div style="clear: both; display: block; height: 10px;"></div>
+
+            <label for="rfv">Reason for Visit</label>
+            <input type="text" id="rfv" th:field="*{rfv}" required />
+            <div style="clear: both; display: block; height: 10px;"></div>
+
+            <label for="heartRate">Heart Rate</label>
+            <input type="number" th:field="*{heartRate}" required />
+            <div style="clear: both; display: block; height: 10px;"></div>
+
+            <label for="bloodPressure">Blood Pressure</label>
+            <input type="text" th:field="*{bloodPressure}" required />
+            <div style="clear: both; display: block; height: 10px;"></div>
+
+            <label for="respiratoryRate">Respsiratory Rate</label>
+            <input type="number" th:field="*{respiratoryRate}" required />
+            <div style="clear: both; display: block; height: 10px;"></div>
+
+            <label for="spO2">spO2</label>
+            <input type="number" th:field="*{spO2}" required />
+            <div style="clear: both; display: block; height: 10px;"></div>
+
+            <label for="temp">Temperature</label>
+            <input type="number" th:field="*{temp}" required />
+            <div style="clear: both; display: block; height: 10px;"></div>
+
+    </div>
+
+    <input type="submit" value="Save"></input>
+    </form>
+    </div>
+</body>
+
+</html>
