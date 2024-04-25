@@ -17,7 +17,8 @@ public class Encounter {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long contactId;
-    private int heartRate, respiratoryRate, spO2, temp;
+    private int heartRate, respiratoryRate, spO2;
+    private double temp;
     private String rfv, bloodPressure;
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate contactDate;
@@ -33,7 +34,7 @@ public class Encounter {
         this.patient = patient;
     };
 
-    public Encounter(int heartRate, int respiratoryRate, int spO2, int temp, String rfv, String bloodPressure, LocalDate contactDate, Patient patient) {
+    public Encounter(int heartRate, int respiratoryRate, int spO2, double temp, String rfv, String bloodPressure, LocalDate contactDate, Patient patient) {
         this.heartRate = heartRate;
         this.respiratoryRate = respiratoryRate;
         this.spO2 = spO2;
@@ -76,11 +77,11 @@ public class Encounter {
         this.spO2 = spO2;
     }
 
-    public int getTemp() {
+    public double getTemp() {
         return temp;
     }
 
-    public void setTemp(int temp) {
+    public void setTemp(double temp) {
         this.temp = temp;
     }
 
