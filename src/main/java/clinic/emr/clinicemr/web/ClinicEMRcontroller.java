@@ -1,17 +1,21 @@
 package clinic.emr.clinicemr.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 
 
 import clinic.emr.clinicemr.domain.PatientRepository;
 import clinic.emr.clinicemr.domain.Encounter;
 import clinic.emr.clinicemr.domain.EncounterRepository;
 import clinic.emr.clinicemr.domain.Patient;
+
 
 @Controller
 public class ClinicEMRcontroller {
@@ -20,6 +24,11 @@ public class ClinicEMRcontroller {
 	@Autowired
 	private EncounterRepository encounterRepository;
 
+	@RequestMapping(value="/login")
+    public String login() {	
+        return "login";
+    }	
+
 	// Show all patient
 	// http://localhost:8080/patientlist
 	@GetMapping(value={"/","/patientlist"})
@@ -27,7 +36,7 @@ public class ClinicEMRcontroller {
 		model.addAttribute("patients", patientRepository.findAll());
 		return "patientList";
 	}
-
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping(value = "/delete/{id}")
 	public String deletePatient(@PathVariable("id") Long patientId, Model model) {
 		patientRepository.deleteById(patientId);

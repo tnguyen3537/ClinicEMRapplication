@@ -1,6 +1,10 @@
 package clinic.emr.clinicemr.domain;
 
+import java.time.LocalDate;
 import java.util.List;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -17,7 +21,10 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private int mrn;
-    private String fName, lName, dateofBirth;
+    private String fName, lName;
+    
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private LocalDate dateofBirth;
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
@@ -26,7 +33,7 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(int mrn, String fName, String lName, String dateofBirth) {
+    public Patient(int mrn, String fName, String lName, LocalDate dateofBirth) {
         this.mrn = mrn;
         this.fName = fName;
         this.lName = lName;
@@ -65,11 +72,11 @@ public class Patient {
         this.lName = lName;
     }
 
-    public String getDateofBirth() {
+    public LocalDate getDateofBirth() {
         return dateofBirth;
     }
 
-    public void setDateofBirth(String dateofBirth) {
+    public void setDateofBirth(LocalDate dateofBirth) {
         this.dateofBirth = dateofBirth;
     }
 

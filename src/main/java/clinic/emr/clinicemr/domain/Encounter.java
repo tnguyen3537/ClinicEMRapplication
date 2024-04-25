@@ -1,5 +1,9 @@
 package clinic.emr.clinicemr.domain;
 
+import java.time.LocalDate;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,7 +18,9 @@ public class Encounter {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long contactId;
     private int heartRate, respiratoryRate, spO2, temp;
-    private String rfv, bloodPressure,contactDate;
+    private String rfv, bloodPressure;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private LocalDate contactDate;
 
     @ManyToOne
     @JoinColumn(name = "patient_id", referencedColumnName = "id")
@@ -27,7 +33,7 @@ public class Encounter {
         this.patient = patient;
     };
 
-    public Encounter(int heartRate, int respiratoryRate, int spO2, int temp, String rfv, String bloodPressure, String contactDate, Patient patient) {
+    public Encounter(int heartRate, int respiratoryRate, int spO2, int temp, String rfv, String bloodPressure, LocalDate contactDate, Patient patient) {
         this.heartRate = heartRate;
         this.respiratoryRate = respiratoryRate;
         this.spO2 = spO2;
@@ -94,11 +100,11 @@ public class Encounter {
         this.bloodPressure = bloodPressure;
     }  
     
-    public String getContactDate() {
+    public LocalDate getContactDate() {
         return contactDate;
     }
 
-    public void setContactDate(String contactDate) {
+    public void setContactDate(LocalDate contactDate) {
         this.contactDate = contactDate;
     }
 
